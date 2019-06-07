@@ -47,7 +47,7 @@
             android:clickable="true"
             android:contentDescription="@string/content_description"
             android:focusable="true"
-            android:src="@drawable/btn_play_clicked"
+            android:src="@color/btn_play_clicked"
             app:layout_constraintBottom_toBottomOf="@id/imgBackDrop"
             app:layout_constraintEnd_toEndOf="@id/imgBackDrop"/>
 

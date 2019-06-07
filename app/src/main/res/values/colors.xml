@@ -8,4 +8,6 @@
     <color name="colorGrey900">#212121</color>
     <color name="colorBlueGrey800">#333333</color>
     <color name="colorYellow700">#fbc02d</color>
+    <color name="colorYellow">#96A50A</color>
+    <color name="colorBackGround">#333333</color>
 </resources>

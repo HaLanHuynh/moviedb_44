@@ -2,6 +2,7 @@ package com.sun_asterisk.moviedb_44.data.repository
 
 import com.sun_asterisk.moviedb_44.data.model.Actor
 import com.sun_asterisk.moviedb_44.data.model.Movie
+import com.sun_asterisk.moviedb_44.data.model.Producer
 import com.sun_asterisk.moviedb_44.data.source.local.MovieLocalDataSource
 import com.sun_asterisk.moviedb_44.data.source.remote.MovieRemoteDataSource
 import io.reactivex.Observable
@@ -35,4 +36,6 @@ class MovieRepository private constructor(
     fun getListMovieTopRated(page: Int): Observable<MutableList<Movie>> = remote.getListMovieTopRated(page)
 
     fun getListMovieNowPlaying(page: Int): Observable<MutableList<Movie>> = remote.getListMovieNowPlaying(page)
+
+    fun getProducers(movieId: Int): Observable<List<Producer>> = remote.getProducers(movieId)
 }

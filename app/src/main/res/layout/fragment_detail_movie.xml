@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="viewModel"
+                  type="com.sun_asterisk.moviedb_44.screen.detail.DetailViewModel"/>
+    </data>
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBackGround">
+
+            <ImageView
+                    android:id="@+id/imagePoster"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="5:3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/imageMovieAvatar"
+                    android:layout_width="@dimen/dp_90"
+                    android:layout_height="@dimen/dp_130"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/buttonPlay"/>
+
+            <Button
+                    android:id="@+id/buttonPlay"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_50"
+                    app:layout_constraintBottom_toBottomOf="@id/imagePoster"
+                    app:layout_constraintRight_toRightOf="@id/imagePoster"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:background="@drawable/ic_play"/>
+
+            <TextView
+                    android:id="@+id/textMovieTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/imagePoster"
+                    app:layout_constraintLeft_toRightOf="@id/imageMovieAvatar"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:textSize="@dimen/sp_15"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorWhite"
+                    android:text="@{viewModel.movieObservable.title}"/>
+
+            <TextView
+                    android:id="@+id/textDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/textMovieTitle"
+                    app:layout_constraintTop_toBottomOf="@id/textMovieTitle"
+                    android:textSize="@dimen/sp_10"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorWhite"
+                    android:text="@{viewModel.movieObservable.releaseDate}"/>
+
+            <TextView
+                    android:id="@+id/textRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/textDate"
+                    app:layout_constraintBottom_toBottomOf="@id/imageMovieAvatar"
+                    android:textColor="@color/colorYellow"
+                    android:text="@{String.valueOf(viewModel.movieObservable.voteAverage)}"/>
+
+            <Button
+                    android:id="@+id/buttonRate"
+                    android:layout_width="@dimen/dp_50"
+                    android:layout_height="@dimen/dp_50"
+                    app:layout_constraintTop_toBottomOf="@id/imagePoster"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:background="@drawable/ic_rate"/>
+
+            <TextView
+                    android:id="@+id/textDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_70"
+                    app:layout_constraintTop_toBottomOf="@id/imageMovieAvatar"
+                    app:layout_constraintLeft_toLeftOf="@id/imageMovieAvatar"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_10"
+                    app:layout_constraintLeft_toRightOf="@id/buttonRate"
+                    android:layout_marginRight="@dimen/dp_20"
+                    android:text="@{viewModel.movieObservable.overview}"/>
+
+            <TextView
+                    android:id="@+id/textReadMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@id/textDescription"
+                    app:layout_constraintTop_toBottomOf="@id/textDescription"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:textColor="@color/colorYellow"
+                    android:text="@string/read_more"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:id="@+id/textActor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/textReadMore"
+                    app:layout_constraintLeft_toLeftOf="@id/textReadMore"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="@string/actor"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/colorWhite"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewActor"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="@dimen/dp_120"
+                    app:layout_constraintTop_toBottomOf="@id/textActor"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginLeft="@dimen/sp_15"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" >
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                    android:id="@+id/textProducer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerViewActor"
+                    app:layout_constraintLeft_toLeftOf="@id/textReadMore"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="@string/producer"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp_15"
+                    android:textColor="@color/colorWhite"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewProducer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_120"
+                    app:layout_constraintTop_toBottomOf="@id/textProducer"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="@dimen/sp_15"
+                    android:scrollbars="horizontal">
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
